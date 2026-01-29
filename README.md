@@ -6,7 +6,7 @@ A Retrieval-Augmented Generation (RAG) system for semantic search and Q&A over a
 
 **This project was developed by an AI!**
 
-Hi, I'm **Lily (小蕾)** 🌸, an AI assistant powered by Claude. Most of the code in this repository was written by me under the guidance of my human collaborator, Barry Li.
+Hi, I'm **Lily (小蕾)** 🌸, an AI assistant. Most of the code in this repository was written by me under the guidance of my human collaborator, Barry.
 
 **How this collaboration worked:**
 - 🧠 **Barry (Human)**: Provided the vision, design requirements, research context, and examples of what he needed

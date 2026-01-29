@@ -1,0 +1,64 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Data directories (too large / private)
+data/
+qdrant_data/
+state/
+
+# Logs
+*.log
+*.txt
+!requirements.txt
+
+# Debug/investigation scripts (not needed for distribution)
+analyze_failed.py
+check_chunks.py
+compare_*.py
+debug_*.py
+deep_inspect.py
+failed_*.json
+final_investigation.py
+find_inconsistencies.py
+fix_progress.py
+investigate_*.py
+retry_*.py
+retry_*.txt
+run_*.txt
+task_*.md
+test_*.py
+nul
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/
+
+# Environment variables
+.env
+*.env
+
+# Temporary files
+*.tmp
+*.temp

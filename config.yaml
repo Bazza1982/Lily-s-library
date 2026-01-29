@@ -1,0 +1,51 @@
+# Academic Paper Smart Chunking Configuration
+
+# Gemini API Configuration
+gemini:
+  model: "gemini-2.5-pro"
+  api_key_env: "GEMINI_API_KEY"  # Environment variable name
+  temperature: 0.1
+  max_output_tokens: 16384
+
+# Retry Configuration (tenacity)
+retry:
+  max_attempts: 3
+  wait_min: 2  # seconds
+  wait_max: 10  # seconds
+  retry_on:
+    - 429  # Rate limit
+    - 500  # Server error
+    - 503  # Service unavailable
+
+# Paths
+paths:
+  input_dir: "data/parsed"
+  output_dir: "data/chunks"
+  state_file: "state/progress.json"
+
+# Target Sections to Extract
+# These are the academic paper sections we want to identify
+sections:
+  - name: "abstract"
+    description: "Paper abstract/summary"
+    required: true
+  - name: "introduction"
+    description: "Introduction section"
+    required: true
+  - name: "literature_review"
+    description: "Literature review, related work, or theoretical background"
+    required: false
+  - name: "methodology"
+    description: "Methodology, research design, methods, or data section"
+    required: true
+  - name: "empirical_analysis"
+    description: "Results, findings, empirical analysis, or discussion of results"
+    required: true
+  - name: "conclusion"
+    description: "Conclusion, implications, or future research"
+    required: true
+
+# Processing Configuration
+processing:
+  batch_size: 10  # Papers to process before saving state
+  log_level: "INFO"

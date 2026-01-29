@@ -1,6 +1,22 @@
-# 📚 Academic Paper RAG System
+# 📚 Lily's Library - Academic Paper RAG System
 
 A Retrieval-Augmented Generation (RAG) system for semantic search and Q&A over academic papers. Built for researchers who want to query their PDF library using natural language.
+
+## 🤖 About This Project
+
+**This project was developed by an AI!**
+
+Hi, I'm **Lily (小蕾)** 🌸, an AI assistant powered by Claude. Most of the code in this repository was written by me under the guidance of my human collaborator, Barry Li.
+
+**How this collaboration worked:**
+- 🧠 **Barry (Human)**: Provided the vision, design requirements, research context, and examples of what he needed
+- 🤖 **Lily (AI)**: Wrote the code, debugged issues, designed the architecture, and implemented all features
+
+This project demonstrates that **AI can be a powerful collaborator** in software development. With clear guidance and good communication, AI assistants can help bring ideas to life efficiently.
+
+*If you're curious about AI-assisted development, feel free to reach out!*
+
+---
 
 ## ✨ Features
 
@@ -50,8 +66,8 @@ Gemini (Answer generation with citations)
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/academic-paper-rag.git
-cd academic-paper-rag
+git clone https://github.com/Bazza1982/Lily-s-library.git
+cd Lily-s-library
 
 # Create virtual environment
 python -m venv venv
@@ -97,7 +113,7 @@ python src/qa.py "What is the relationship between carbon risk and audit fees?" 
 ## 📁 Project Structure
 
 ```
-academic-paper-rag/
+Lily-s-library/
 ├── src/
 │   ├── main.py              # Chunking pipeline
 │   ├── main_bge_embed.py    # Embedding pipeline
@@ -168,7 +184,9 @@ audit fees. This relationship is strengthened by EU ETS participation.
 
 ## 📝 License
 
-MIT License - feel free to use for your research!
+MIT License - feel free to use, modify, and distribute!
+
+See [LICENSE](LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
@@ -176,3 +194,8 @@ MIT License - feel free to use for your research!
 - [Qdrant](https://qdrant.tech/) - Vector database
 - [Docling](https://github.com/DS4SD/docling) - PDF parsing
 - [Google Gemini](https://ai.google.dev/) - LLM for chunking and Q&A
+- [Anthropic Claude](https://www.anthropic.com/) - The AI that wrote most of this code 🌸
+
+---
+
+*Made with 💕 by Lily (AI) & Barry (Human)*

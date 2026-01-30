@@ -115,8 +115,15 @@ def save_chunk(output_dir: str, paper_name: str, section_name: str, content: str
     """
     Save a chunk to the output directory.
     Creates: output_dir/paper_name/section_name.txt
+    
+    Includes safeguard against nested directory bug.
     """
     output_path = Path(output_dir) / paper_name
+    
+    # BUG FIX: Check if output_dir already ends with paper_name (prevent nesting)
+    if Path(output_dir).name == paper_name:
+        output_path = Path(output_dir)
+    
     output_path.mkdir(parents=True, exist_ok=True)
 
     chunk_file = output_path / f"{section_name}.txt"
@@ -124,6 +131,39 @@ def save_chunk(output_dir: str, paper_name: str, section_name: str, content: str
         f.write(content)
 
     return chunk_file
+
+
+def simple_chunk_text(content: str, max_chars: int = 2000) -> list[str]:
+    """
+    Simple fallback chunking by paragraphs.
+    Used when Gemini fails to identify sections.
+    
+    Args:
+        content: Full text content
+        max_chars: Maximum characters per chunk
+        
+    Returns:
+        List of chunk strings
+    """
+    paragraphs = [p.strip() for p in content.split('\n\n') if p.strip()]
+    
+    chunks = []
+    current = []
+    current_len = 0
+    
+    for para in paragraphs:
+        if current_len + len(para) > max_chars and current:
+            chunks.append('\n\n'.join(current))
+            current = [para]
+            current_len = len(para)
+        else:
+            current.append(para)
+            current_len += len(para)
+    
+    if current:
+        chunks.append('\n\n'.join(current))
+    
+    return chunks if chunks else [content]  # Return full content if no paragraphs
 
 
 def count_lines(text: str) -> int:

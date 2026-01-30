@@ -22,6 +22,7 @@ from utils import (
     extract_section_by_lines,
     save_chunk,
     count_lines,
+    simple_chunk_text,
 )
 
 logger = logging.getLogger(__name__)
@@ -258,10 +259,35 @@ def process_paper(
         })
         logger.debug(f"Saved {section_name}: lines {start}-{end}")
 
+    # FALLBACK: If Gemini returned all nulls, use simple chunking
+    if len(sections_saved) == 0:
+        logger.warning(f"Gemini returned no sections for {paper_name}, using fallback chunking")
+        
+        # Create output directory
+        paper_output_dir = Path(output_dir) / paper_name
+        paper_output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Simple chunk the content
+        chunks = simple_chunk_text(original_text)
+        
+        for i, chunk_content in enumerate(chunks, 1):
+            chunk_file = paper_output_dir / f"chunk_{i:03d}.md"
+            with open(chunk_file, "w", encoding="utf-8") as f:
+                f.write(chunk_content)
+            sections_saved.append({
+                "section": f"chunk_{i:03d}",
+                "start_line": None,
+                "end_line": None,
+                "path": str(chunk_file),
+            })
+        
+        logger.info(f"Fallback: created {len(chunks)} simple chunks for {paper_name}")
+
     return {
         "paper_name": paper_name,
         "total_lines": total_lines,
         "sections_found": len(sections_saved),
         "sections": sections_saved,
         "boundaries": boundaries,
+        "used_fallback": len(sections_saved) > 0 and all(s.get("start_line") is None for s in sections_saved),
     }

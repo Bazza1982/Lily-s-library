@@ -182,6 +182,24 @@ audit fees. This relationship is strengthened by EU ETS participation.
   [1] Keller_2024 (abstract) - score: 0.99
 ```
 
+## 🐛 Bug Fixes & Changelog
+
+### v1.1.0 (2026-01-30)
+
+**Bug Fixes:**
+
+1. **Fixed nested directory bug in chunker** - Some papers were saved with double-nested directories (`chunks/Paper_Name/Paper_Name/`) due to path concatenation issue. Added safeguard in `save_chunk()` to detect and prevent this.
+
+2. **Added fallback chunking** - When Gemini fails to identify any sections (returns all nulls), the system now automatically falls back to simple paragraph-based chunking instead of leaving empty chunk directories. This ensures all papers get properly chunked.
+
+**Improvements:**
+
+- Added `simple_chunk_text()` utility function for fallback chunking
+- Better logging for fallback cases
+- Processing results now include `used_fallback` flag
+
+---
+
 ## 📝 License
 
 MIT License - feel free to use, modify, and distribute!
